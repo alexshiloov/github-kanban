@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  php:
+    build:
+      context: ./docker/php
+    ports:
+      - '9000:9000'
+    volumes:
+      - .:/var/www/html
+    networks:
+      - centra
+
+  nginx:
+    build: ./docker/nginx
+    restart: always
+    ports:
+      - 80:80
+    volumes:
+      - ./logs/nginx/:/var/log/nginx
+      - ./public:/var/www/html/public
+      - ./data/nginx:/etc/nginx/conf.d
+    depends_on:
+      - php
+    networks:
+      - centra
+
+networks:
+  centra:
+    driver: bridge

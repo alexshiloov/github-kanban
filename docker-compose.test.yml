@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  php_test:
+    build:
+      context: ./docker/php
+    ports:
+      - '9000:9000'
+    environment:
+      - APP_ENV=test
+      - APP_DEBUG=true
+    entrypoint: >
+      /bin/sh -c "php bin/phpunit"
+    volumes:
+      - .:/var/www/html

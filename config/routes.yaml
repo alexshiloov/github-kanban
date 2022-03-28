@@ -1,0 +1,12 @@
+index:
+    path: /
+    controller: App\Controller\BoardController::index
+
+
+auth_callback:
+    path: /auth-callback
+    controller: App\Controller\AuthController::callback
+
+auth_login:
+    path: /auth-login
+    controller: App\Controller\AuthController::login
