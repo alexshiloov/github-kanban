@@ -30,5 +30,11 @@ RUN pecl install apcu \
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN composer --version
 
-
 WORKDIR /var/www/html
+
+COPY ./composer.json /var/www/html/composer.json
+COPY ./composer.lock /var/www/html/composer.lock
+
+RUN composer install --optimize-autoloader --no-scripts
+
+COPY --chown=www-data:www-data ./ /var/www/html

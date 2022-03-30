@@ -3,7 +3,8 @@ version: '3'
 services:
   php_test:
     build:
-      context: ./docker/php
+      context: ./
+      dockerfile: ./docker/php/Dockerfile
     ports:
       - '9000:9000'
     environment:
@@ -11,5 +12,3 @@ services:
       - APP_DEBUG=true
     entrypoint: >
       /bin/sh -c "php bin/phpunit"
-    volumes:
-      - .:/var/www/html

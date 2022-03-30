@@ -3,11 +3,10 @@ version: '3'
 services:
   php:
     build:
-      context: ./docker/php
+      context: ./
+      dockerfile: ./docker/php/Dockerfile
     ports:
       - '9000:9000'
-    volumes:
-      - .:/var/www/html
     networks:
       - centra
 
